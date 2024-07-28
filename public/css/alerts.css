@@ -1,0 +1,68 @@
+:root{
+    --color-text: #fff;
+    --color-text-black: #212121;
+    --background-complete: #158515;
+    --background-warning: #ffff58;
+    --background-danger: #a32727;
+    --alert-background-container: rgb(0 0 0 / 63%);
+    --time-transition: all 0.3s ease;
+}
+
+.alert-container{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--alert-background-container);
+    transition: var(--time-transition);
+}
+
+.alert-container.hide{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.alert-container .alert{
+    padding: 10px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transition: var(--time-transition);
+}
+
+.alert.hide{
+    display: none;
+}
+
+.alert.complete{
+    background-color: var(--background-complete);
+    color: var(--color-text);
+}
+
+svg.complete.hide{
+    display: none;
+}
+
+.alert.warning{
+    background-color: var(--background-warning);
+    color: var(--color-text-black);
+}
+
+svg.warning.hide{
+    display: none;
+}
+
+.alert.danger{
+    background-color: var(--background-danger);
+    color: var(--color-text);
+}
+
+svg.danger.hide{
+    display: none;
+}

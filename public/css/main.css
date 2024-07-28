@@ -1,7 +1,10 @@
 :root{
     --background: #333333;
+    --background-container: #212121;
     --color-primary: #fff;
     --color-secondary: #dadada;
+    --border-color: #3373ef;
+    --transition: all 0.3s ease;
 }
 
 body{
@@ -18,7 +21,7 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 article h1 {
-    font-size: 2em; /* Mantén el mismo tamaño de fuente */
+    font-size: 20px; /* Mantén el mismo tamaño de fuente */
     color: var(--color-primary); /* Mantén el mismo color */
 }
 
@@ -35,4 +38,31 @@ article h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.btn{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-primary{
+    background-color: var(--color-primary);
+    color: var(--background-container);
+    transition: var(--transition);
+}
+
+.btn-primary:hover, .btn-primary:focus{
+    background-color: var(--border-color);
+    color: var(--color-primary);
 }

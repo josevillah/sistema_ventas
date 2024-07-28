@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { StoreModule } from './Store/store.module';
-import { AdminModule } from './Admin/admin.module';
+import { CpanelModule } from './cpanel/cpanel.module';
 
 @Module({
-  imports: [StoreModule, AdminModule],
+  imports: [StoreModule, CpanelModule],
 })
 export class AppModule {}

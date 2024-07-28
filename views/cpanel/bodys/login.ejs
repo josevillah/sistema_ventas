@@ -1,0 +1,31 @@
+<%- include('../headers/header_admin') %>
+<article class="container">
+    <article class="card-container">
+        <form action="">
+            <article class="card">
+                <section class="card-header">
+                    <h1 class="card-title">Te damos la bienvenida. 👋</h1>
+                </section>
+                <section class="card-body">
+                    <div class="form-control mt-20">
+                        <input id="user" type="text" name="user" placeholder="Usuario">
+                        <label for="user">
+                            <svg width="30"  height="30"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" /><path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" /></svg>
+                        </label>
+                    </div>
+                    <div class="form-control mt-10">
+                        <input id="password" type="password" name="password" placeholder="Clave">
+                        <label for="password">
+                            <svg width="30"  height="30"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-lock"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 0 1 5 5v3a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3v-3a5 5 0 0 1 5 -5m0 12a2 2 0 0 0 -1.995 1.85l-.005 .15a2 2 0 1 0 2 -2m0 -10a3 3 0 0 0 -3 3v3h6v-3a3 3 0 0 0 -3 -3" /></svg>
+                        </label>
+                    </div>
+                </section>
+                <section class="card-footer">
+                    <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+                </section>
+            </article>
+        </form>
+    </article>
+</article>
+<%- include('../components/alerts') %>
+<%- include('../footers/footer_admin') %>
