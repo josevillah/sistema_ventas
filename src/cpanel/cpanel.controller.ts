@@ -15,11 +15,6 @@ export class CpanelController {
     return {};
   }
 
-  @Post('/login')
-  login(@Body() data: { user: string, password: string} ){
-    return this.cpanelService.login(data);
-  }
-
   @Get('/dashboard')
   @Render('cpanel/bodys/dashboard')
   dashboard(){

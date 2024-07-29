@@ -1,9 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
-export class CpanelService {
-
-    login(data: { user: string, password: string}){
-        return data;
-    }
-}
+export class CpanelService {}
