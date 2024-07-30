@@ -15,13 +15,10 @@ async function bootstrap() {
 
   app.use(
     session({
-      secret: 'my-secret', // Cambia esto a una clave secreta segura
+      secret: 'leticia1994', // Cambia esto por una clave secreta segura
       resave: false,
       saveUninitialized: false,
-      cookie: {
-        secure: false, // Debe ser true si usas HTTPS
-        maxAge: 60000, // Tiempo de vida de la cookie en milisegundos
-      },
+      cookie: { maxAge: 3600000 }, // Configuración de la cookie de sesión
     }),
   );
 

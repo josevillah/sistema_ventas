@@ -14,10 +14,18 @@ datasource db {
 }
 
 model Users {
-  id         String   @id @default(uuid())
-  username   String   @unique
+  id         String    @id @default(uuid())
+  username   String    @unique
   password   String
   full_name  String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  type_id    Int
+  type       TypeUsers @relation(fields: [type_id], references: [id])
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+}
+
+model TypeUsers {
+  id    Int     @id @default(autoincrement())
+  name  String
+  users Users[]
 }

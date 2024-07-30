@@ -8,9 +8,9 @@ export class UserController {
     constructor(private userService: UserService){}
 
     @Post('/login')
-    login(@Body() data: { username: string, password: string}, @Req() req: Request ){
+    async login(@Body() data: { username: string, password: string}, @Req() req: Request ){
         try{
-            const user = this.userService.login(data);
+            const user = await this.userService.login(data); // Añadido await aquí
             req.session.user = user; // Almacena el usuario en la sesión
             return user;
         }catch (error) {
@@ -33,12 +33,12 @@ export class UserController {
         }
     }
 
-    @Post('/logout')
+    @Get('/logout')
     async logout(@Req() req: Request) {
         req.session.destroy((err) => {
-        if (err) {
-            throw new HttpException('Error al cerrar sesión', HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+            if (err) {
+                throw new HttpException('Error al cerrar sesión', HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         });
         return { message: 'Sesión cerrada' };
     }

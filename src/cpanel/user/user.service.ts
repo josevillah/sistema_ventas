@@ -25,7 +25,7 @@ export class UserService {
         }
 
         // Encriptar la contraseña
-        const hashedPassword = await bcrypt.hash(data.password, 10);
+        const hashedPassword: string = await bcrypt.hash(data.password, 10);
 
         // Crear el nuevo usuario
         const newUser = await this.prisma.users.create({
@@ -33,6 +33,9 @@ export class UserService {
                 username: data.username,
                 password: hashedPassword,
                 full_name: data.full_name,
+                type: {
+                    connect: { id: 1 }
+                },
             },
         });
 
