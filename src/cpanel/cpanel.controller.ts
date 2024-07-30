@@ -18,14 +18,13 @@ export class CpanelController {
 
   @Get('/dashboard')
   @Render('cpanel/bodys/dashboard')
-  dashboard(@Req() req: Request, @Res() res: Response){
-    if(!req.session.user){
+  dashboard(@Req() req: Request, @Res() res: Response) {
+    if (!req.session.user) {
       return res.redirect('/cpanel');
     }
-    
+
     return {
-        user: req.session.user
+      user: req.session.user
     };
   }
-
 }

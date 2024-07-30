@@ -1,6 +1,6 @@
-import { Controller, Post, Get, Body, Req, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Body, Req, Res, HttpException, HttpStatus, Redirect } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 @Controller('user')
 export class UserController {
@@ -34,13 +34,13 @@ export class UserController {
     }
 
     @Get('/logout')
-    async logout(@Req() req: Request) {
+    async logout(@Req() req: Request, @Res() res: Response) {
         req.session.destroy((err) => {
             if (err) {
                 throw new HttpException('Error al cerrar sesión', HttpStatus.INTERNAL_SERVER_ERROR);
             }
         });
-        return { message: 'Sesión cerrada' };
+        return res.redirect('/cpanel');
     }
 
     @Get('/me')
