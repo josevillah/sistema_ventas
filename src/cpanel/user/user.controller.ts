@@ -42,12 +42,4 @@ export class UserController {
         });
         return res.redirect('/cpanel');
     }
-
-    @Get('/me')
-    async me(@Req() req: Request) {
-        if (!req.session.user) {
-            throw new HttpException('No hay sesión activa', HttpStatus.UNAUTHORIZED);
-        }
-        return req.session.user;
-    }
 }

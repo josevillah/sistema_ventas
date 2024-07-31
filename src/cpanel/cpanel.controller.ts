@@ -12,17 +12,35 @@ export class CpanelController {
 
   @Get('/')
   @Render('cpanel/bodys/login')
-  showLogin(){
+  showLogin(@Req() req: Request, @Res() res: Response){
+
+    if (req.session.user) {
+      return res.redirect('/cpanel/dashboard');
+    }
     return {};
   }
 
   @Get('/dashboard')
   @Render('cpanel/bodys/dashboard')
   dashboard(@Req() req: Request, @Res() res: Response) {
+    
     if (!req.session.user) {
       return res.redirect('/cpanel');
     }
 
+    return {
+      user: req.session.user
+    };
+  }
+  
+  @Get('/profile')
+  @Render('cpanel/bodys/profile')
+  profile(@Req() req: Request, @Res() res: Response) {
+
+    if (!req.session.user) {
+      return res.redirect('/cpanel');
+    }
+    
     return {
       user: req.session.user
     };
