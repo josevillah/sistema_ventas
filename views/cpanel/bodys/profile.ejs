@@ -10,11 +10,11 @@
             <h1>Cuenta</h1>
         </section>
         <section class="module-actions mt-20">
-            <a href="" class="btn btn-primary active info">Info</a>
+            <a href="" class="btn btn-primary active infoAccount">Info</a>
             <a href="" class="btn btn-primary changePassword">Cambio de clave</a>
         </section>
-        <section class="module-card active mt-20">
-            <form action="" method="POST">
+        <section class="module-card infoAccount active mt-20">
+            <form class="infoAccount" action="" method="POST">
                 <div class="form-control">
                     <p>Tipo de usuario: <span>Desarrollador</span></p>
                 </div>
@@ -38,8 +38,33 @@
                 </div>
             </form>
         </section>
+        <section class="module-card changePassword mt-20">
+            <form class="changePassword" action="" method="POST">
+                <div class="form-control">
+                    <p>Tipo de usuario: <span>Desarrollador</span></p>
+                </div>
+                <input type="hidden" name="user" value="<%= user.username %>">
+                <div class="form-control mt-10">
+                    <label for="pass">Clave actual:</label>
+                    <input id="pass" type="password" name="pass" placeholder="Ingresa tu clave">
+                    <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" /><path d="M15 9h.01" /></svg>
+                </div>
+                <div class="form-control mt-10">
+                    <label for="newPasword">Nueva clave:</label>
+                    <input id="newPasword" type="password" name="newPasword" placeholder="Ingresa tu nueva clave">
+                    <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" /><path d="M15 9h.01" /></svg>
+                </div>
+                <div class="form-control mt-10">
+                    <label for="repetPassword">Repite clave:</label>
+                    <input id="repetPassword" type="password" name="repetPassword" placeholder="Repite tu nueva clave">
+                    <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z" /><path d="M15 9h.01" /></svg>
+                </div>
+                <div class="form-control mt-20">
+                    <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                </div>
+            </form>
+        </section>
     </article>
-
 </article>
-
+<%- include('../components/alerts') %>
 <%- include('../footers/footer_profile') %>

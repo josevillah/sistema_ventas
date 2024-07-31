@@ -62,4 +62,38 @@ export class UserService {
 
         return user;
     }
+
+    async changePassword(data: {user: string, pass: string, newPasword: string}) {
+
+        const user = await this.prisma.users.findUnique({
+            where: {
+                username: data.user,
+            }
+        });
+
+        if(!user) {
+            throw new ConflictException('El usuario no existe');
+        }
+
+        const isPasswordValid = await bcrypt.compare(data.pass, user.password);
+
+        if (!isPasswordValid) {
+            throw new UnauthorizedException('La contraseña es incorrecta');
+        }
+
+        // Encriptar la nueva contraseña
+        const hashedPassword: string = await bcrypt.hash(data.newPasword, 10);
+
+        // Actualizar la contraseña del usuario
+        const updatedUser = await this.prisma.users.update({
+            where: {
+                username: data.user,
+            },
+            data: {
+                password: hashedPassword,
+            },
+        });
+
+        return true;
+    }
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Req, Res, HttpException, HttpStatus, Redirect } from '@nestjs/common';
+import { Controller, Post, Get, Body, Req, Res, HttpException, HttpStatus, Redirect, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Request, Response } from 'express';
 
@@ -41,5 +41,18 @@ export class UserController {
             }
         });
         return res.redirect('/cpanel');
+    }
+
+    @Put('/changePassword')
+    async changePassword(@Body() data: {user: string, pass: string, newPasword: string}) {
+        try {
+            const result = await this.userService.changePassword(data);
+            return result;
+        }catch (error) {
+            if (error instanceof HttpException) {
+                throw error;
+            }
+            throw new HttpException('Error inesperado', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
