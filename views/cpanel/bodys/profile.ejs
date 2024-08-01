@@ -18,6 +18,7 @@
                 <div class="form-control">
                     <p>Tipo de usuario: <span>Desarrollador</span></p>
                 </div>
+                <input type="hidden" name="firstUsername" value="<%= user.username %>">
                 <div class="form-control mt-10">
                     <label for="username">Usuario:</label>
                     <input id="username" type="text" name="username" placeholder="Ingresa tu usuario" value="<%= user.username %>">
@@ -66,5 +67,7 @@
         </section>
     </article>
 </article>
+
 <%- include('../components/alerts') %>
+
 <%- include('../footers/footer_profile') %>

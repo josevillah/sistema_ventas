@@ -71,3 +71,57 @@ export class Alert {
         return;
     }
 }
+
+export class Modal {
+    constructor() {
+        this.modalContainer = null;
+        this.modal = null;
+        this.closeModal = null;
+        this.btnConfirm = null;
+        this.btnCancel = null;
+        this.resolvePromise = null;
+    }
+
+    async showModal() {
+        this.modalContainer = document.querySelector('.modal-container');
+        this.modal = document.querySelector('.modal');
+        this.closeModal = document.querySelector('.close-modal');
+        this.btnConfirm = document.querySelector('.btn-dark');
+        this.btnCancel = document.querySelector('.btn-cancel');
+
+        this.modalContainer.classList.remove('hide');
+        this.modal.classList.remove('hide');
+
+        return new Promise((resolve) => {
+            this.resolvePromise = resolve;
+
+            this.modal.addEventListener('click', this.handleModalClick.bind(this));
+        });
+    }
+
+    handleModalClick(e) {
+        e.preventDefault();
+
+        if (e.target.closest('.close-modal')) {
+            this.hideModal();
+            this.resolvePromise({ action: 'close' });
+        }
+        
+        if (e.target.closest('.btn-cancel')) {
+            this.hideModal();
+            this.resolvePromise({ action: 'cancel' });
+        }
+        
+        if (e.target.closest('.btn-dark')) {
+            this.hideModal();
+            this.resolvePromise({ action: 'confirm' });
+        }
+    }
+
+    hideModal() {
+        this.modalContainer.classList.add('hide');
+        this.modal.classList.add('hide');
+
+        this.modal.removeEventListener('click', this.handleModalClick.bind(this));
+    }
+}

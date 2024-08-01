@@ -1,5 +1,3 @@
-import { Alert } from '../alerts.js';
-
 const moduleActions = document.querySelector('.module-actions');
 
 const handlerModule = (moduleBtn) => {
@@ -26,55 +24,4 @@ moduleActions.addEventListener('click', (e) => {
     if(e.target.classList.contains('btn')) {
         handlerModule(e.target);
     }
-});
-
-document.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formClass = e.target.classList[0];
-    const data = Object.fromEntries(
-        new FormData(e.target)
-    );
-    
-    // proceso para cambiar la clave
-    if(formClass === 'changePassword'){
-        if(data){
-            if(data.pass === '' || data.newPasword === '' || data.repetPassword === ''){
-                const alert = new Alert('w', 'Todos los campos son obligatorios.');
-                alert.showAlert();
-                return;
-            }
-    
-            if(data.newPasword !== data.repetPassword){
-                const alert = new Alert('w', 'Las contraseñas no coinciden.');
-                alert.showAlert();
-                return;
-            }
-    
-            data.info = formClass;
-            const response = await fetch('/user/changePassword', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-    
-            const result = await response.json();
-    
-            if(result.message === 'La contraseña es incorrecta'){
-                const alert = new Alert('w', 'La contraseña actual es incorrecta.');
-                alert.showAlert();
-                return;
-            }
-    
-            if(result == true){
-                const alert = new Alert('c', 'Contraseña actualizada correctamente.');
-                alert.showAlert();
-                setTimeout(() => {
-                    window.location.reload();
-                }, 2500);
-            }
-        }
-    }
-
 });

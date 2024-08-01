@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Render, Req, Res } from "@nestjs/common";
+import { Controller, Get, Post, Render, Req, Res } from "@nestjs/common";
 import { CpanelService } from "./cpanel.service";
 import { Request, Response } from 'express';
 
@@ -41,6 +41,19 @@ export class CpanelController {
       return res.redirect('/cpanel');
     }
     
+    return {
+      user: req.session.user
+    };
+  }
+
+  @Get('/users')
+  @Render('cpanel/bodys/users')
+  users(@Req() req: Request, @Res() res: Response) {
+
+    if (!req.session.user) {
+      return res.redirect('/cpanel');
+    }
+
     return {
       user: req.session.user
     };

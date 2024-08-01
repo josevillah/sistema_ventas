@@ -2,6 +2,7 @@
     --background: #333333;
     --background-container: #212121;
     --background-container-dark: #1d1d1d;
+    --background-danger: #a32727;
     --color-primary: #fff;
     --color-secondary: #dadada;
     --color-icon-form: #565656;
@@ -97,6 +98,17 @@ a{
 
 .btn-dark:hover, .btn-dark:focus{
     background-color: var(--border-color);
+    color: var(--color-primary);
+}
+
+.btn-cancel{
+    background-color: var(--background-container-dark);
+    color: var(--color-primary);
+    transition: var(--transition);
+}
+
+.btn-cancel:hover, .btn-cancel:focus{
+    background-color: var(--background-danger);
     color: var(--color-primary);
 }
 

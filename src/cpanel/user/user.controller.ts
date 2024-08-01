@@ -55,4 +55,18 @@ export class UserController {
             throw new HttpException('Error inesperado', HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Put('/updateUser')
+    async updateUser(@Body() data: {firstUsername: string, username: string, password: string, full_name: string}, @Req() req: Request) {
+        try {
+            const result = await this.userService.updateUser(data);
+            req.session.user = result;
+            return result;
+        }catch (error) {
+            if (error instanceof HttpException) {
+                throw error;
+            }
+            throw new HttpException('Error inesperado', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

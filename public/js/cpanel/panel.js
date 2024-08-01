@@ -1,3 +1,5 @@
+import { Modal } from '../alerts.js';
+
 const panel = document.querySelector('.panel');
 
 panel.addEventListener('click', function(e) {
@@ -17,7 +19,18 @@ panel.addEventListener('click', function(e) {
     // Redireccionar a la pagina seleccionada
     if(!childPanel){
         const href = listItem.querySelector('a').getAttribute('href');
-        if(href){
+
+        // Click en el boton de cerrar sesion
+        if(href === '/user/logout'){
+            const modal = new Modal();
+            modal.showModal().then( async (result) => {
+                if (result.action === 'confirm') {
+                    window.location.href = `${href}`;
+                    return;
+                }
+            });
+        }else{
+            // Redireccionar a la pagina seleccionada
             window.location.href = `${href}`;
         }
     }

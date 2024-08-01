@@ -10,6 +10,7 @@ export class UserService {
 
     constructor(private prisma: PrismaService) {}
 
+    // Funcion para crear un nuevo usuario
     async createUser(
         data: { username: string, password: string, full_name: string}): Promise<Users> {
         
@@ -42,6 +43,7 @@ export class UserService {
         return newUser;
     }
 
+    // Funcion para iniciar sesión
     async login(data: { username: string, password: string }): Promise<Users> {
         
         const user = await this.prisma.users.findUnique({
@@ -63,6 +65,7 @@ export class UserService {
         return user;
     }
 
+    // Funcion para cambiar la contraseña del usuario
     async changePassword(data: {user: string, pass: string, newPasword: string}) {
 
         const user = await this.prisma.users.findUnique({
@@ -95,5 +98,70 @@ export class UserService {
         });
 
         return true;
+    }
+
+    // Funcion para actualizar los datos del usuario
+    async updateUser(data: {firstUsername: string, username: string, password: string, full_name: string}) {
+
+        if(data.firstUsername !== data.username) {
+            const user = await this.prisma.users.findUnique({
+                where: {
+                    username: data.username,
+                }
+            });
+    
+            if(user) {
+                throw new ConflictException('El usuario ya existe');
+            }
+
+            const dataFirstUser = await this.prisma.users.findUnique({
+                where: {
+                    username: data.firstUsername,
+                }
+            });
+
+            const isPasswordValid = await bcrypt.compare(data.password, dataFirstUser.password);
+
+            if (!isPasswordValid) {
+                throw new UnauthorizedException('La contraseña es incorrecta');
+            }
+
+            const updatedUser = await this.prisma.users.update({
+                where: {
+                    username: data.firstUsername,
+                },
+                data: {
+                    username: data.username,
+                    full_name: data.full_name,
+                },
+            });
+
+            return updatedUser;
+
+        }else{
+            const user = await this.prisma.users.findUnique({
+                where: {
+                    username: data.username,
+                }
+            });
+
+            const isPasswordValid = await bcrypt.compare(data.password, user.password);
+            
+            if (!isPasswordValid) {
+                throw new UnauthorizedException('La contraseña es incorrecta');
+            }
+
+            const updatedUser = await this.prisma.users.update({
+                where: {
+                    username: data.username,
+                },
+                data: {
+                    full_name: data.full_name,
+                },
+            });
+            
+
+            return updatedUser;
+        }
     }
 }
