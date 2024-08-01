@@ -1,13 +1,16 @@
 import { Controller, Get, Post, Render, Req, Res } from "@nestjs/common";
 import { CpanelService } from "./cpanel.service";
+import { UserService } from "./user/user.service";
 import { Request, Response } from 'express';
 
 @Controller('cpanel')
 export class CpanelController {
   cpanelService: CpanelService;
+  userService: UserService;
 
-  constructor(cpanelService:CpanelService) {
+  constructor(cpanelService:CpanelService, UserService: UserService) {
     this.cpanelService = cpanelService;
+    this.userService = UserService;
   }
 
   @Get('/')
@@ -54,8 +57,11 @@ export class CpanelController {
       return res.redirect('/cpanel');
     }
 
+    const result = this.userService.getAllUsers();
+    console.log(result);
     return {
-      user: req.session.user
+      user: req.session.user,
+      users: result
     };
   }
 }

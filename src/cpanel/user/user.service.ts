@@ -10,6 +10,12 @@ export class UserService {
 
     constructor(private prisma: PrismaService) {}
 
+    // Funcion para obtener todos los usuarios
+    async getAllUsers(): Promise<Users[]> {
+        const result = await this.prisma.users.findMany();
+        return result;
+    }
+
     // Funcion para crear un nuevo usuario
     async createUser(
         data: { username: string, password: string, full_name: string}): Promise<Users> {

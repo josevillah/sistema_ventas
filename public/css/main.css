@@ -10,6 +10,28 @@
     --transition: all 0.3s ease;
 }
 
+/* Ancho de la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 10px; /* Ajusta el ancho de la barra de desplazamiento */
+    height: 12px; /* Ajusta la altura de la barra de desplazamiento horizontal */
+}
+
+/* Fondo de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+    background: var(--color-secondary); /* Color de fondo del track */
+    border-radius: 7px; /* Radio del borde para redondear */
+}
+
+/* Thumb de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background-color: var(--background); /* Color del thumb */
+    border-radius: 10px; /* Radio del borde para redondear */
+}
+
+/* Thumb al pasar el cursor */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--border-color); /* Color del thumb al pasar el cursor */
+}
 
 body{
     background-color: var(--background);
@@ -63,6 +85,14 @@ a{
 
 .mt-20{
     margin-top: 20px;
+}
+
+.w-500{
+    width: 500px;
+}
+
+.w-800{
+    width: 800px;
 }
 
 .btn{
