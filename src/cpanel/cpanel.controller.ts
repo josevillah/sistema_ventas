@@ -38,30 +38,39 @@ export class CpanelController {
   
   @Get('/profile')
   @Render('cpanel/bodys/profile')
-  profile(@Req() req: Request, @Res() res: Response) {
+  async profile(@Req() req: Request, @Res() res: Response) {
 
     if (!req.session.user) {
       return res.redirect('/cpanel');
     }
+
+    const type = await this.userService.getTypeForId({id: req.session.user.type_id});
     
     return {
-      user: req.session.user
+      user: req.session.user,
+      type
     };
   }
 
   @Get('/users')
   @Render('cpanel/bodys/users')
-  users(@Req() req: Request, @Res() res: Response) {
+  async users(@Req() req: Request, @Res() res: Response) {
 
     if (!req.session.user) {
       return res.redirect('/cpanel');
     }
 
-    const result = this.userService.getAllUsers();
-    console.log(result);
+    if(req.session.user.type_id != 1 && req.session.user.type_id != 2) {
+      return res.redirect('/cpanel/dashboard');
+    }
+
+    const result = await this.userService.getAllUsers();
+    const typeUsers = await this.userService.getAllTypeUsers();
+    
     return {
       user: req.session.user,
-      users: result
+      users: result,
+      typeUsers: typeUsers
     };
   }
 }

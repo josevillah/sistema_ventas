@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 
 // Importo las tablas de la base de datos
 import { Users } from "@prisma/client";
+import { TypeUsers } from "@prisma/client";
 
 @Injectable()
 export class UserService {
@@ -12,13 +13,40 @@ export class UserService {
 
     // Funcion para obtener todos los usuarios
     async getAllUsers(): Promise<Users[]> {
-        const result = await this.prisma.users.findMany();
+        const result = await this.prisma.users.findMany({
+            orderBy:{
+                username: 'asc'
+            }            
+        });
+        return result;
+    }
+    
+    // Funcion para obtener todos los tipos de usuarios
+    async getAllTypeUsers(): Promise<TypeUsers[]> {
+        const result = await this.prisma.typeUsers.findMany({
+            where:{
+                id: {not: 1}
+            },
+            orderBy:{
+                name: 'asc'
+            }
+        });
+        return result;
+    }
+    
+    // Funcion para obtener el tipo de usuarios por id
+    async getTypeForId( data: {id: number} ): Promise<TypeUsers> {
+        const result = await this.prisma.typeUsers.findUnique({
+            where:{
+                id: data.id
+            }
+        });
         return result;
     }
 
     // Funcion para crear un nuevo usuario
     async createUser(
-        data: { username: string, password: string, full_name: string}): Promise<Users> {
+        data: { username: string, type_id: number, password: string, full_name: string}): Promise<Users> {
         
         const user = await this.prisma.users.findUnique({
             where: {
@@ -40,9 +68,7 @@ export class UserService {
                 username: data.username,
                 password: hashedPassword,
                 full_name: data.full_name,
-                type: {
-                    connect: { id: 1 }
-                },
+                type_id: data.type_id,
             },
         });
 
@@ -55,6 +81,7 @@ export class UserService {
         const user = await this.prisma.users.findUnique({
             where: {
                 username: data.username,
+                status: true,
             }
         });
 
@@ -166,7 +193,6 @@ export class UserService {
                 },
             });
             
-
             return updatedUser;
         }
     }

@@ -10,7 +10,8 @@ export class UserController {
     @Post('/login')
     async login(@Body() data: { username: string, password: string}, @Req() req: Request ){
         try{
-            const user = await this.userService.login(data); // Añadido await aquí
+            const user = await this.userService.login(data);
+            // const typeUser = await this.userService.getTypeForId({id: user.type_id});
             req.session.user = user; // Almacena el usuario en la sesión
             return user;
         }catch (error) {
@@ -22,7 +23,7 @@ export class UserController {
     }
 
     @Post('/createUser')
-    async createUser(@Body() data: { username: string; password: string; full_name: string }) {
+    async createUser(@Body() data: { username: string, type_id: number, password: string, full_name: string }) {
         try {
             return await this.userService.createUser(data);
         }catch (error) {

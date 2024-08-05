@@ -3,6 +3,7 @@
     --background-container: #212121;
     --background-container-dark: #1d1d1d;
     --background-danger: #a32727;
+    --background-complete: #158515;
     --color-primary: #fff;
     --color-secondary: #dadada;
     --color-icon-form: #565656;
@@ -87,12 +88,124 @@ a{
     margin-top: 20px;
 }
 
+.w-100{
+    width: 100%;
+}
+
 .w-500{
     width: 500px;
 }
 
 .w-800{
     width: 800px;
+}
+
+.w-1000{
+    width: 1000px;
+}
+
+.w-1200{
+    width: 1200px;
+}
+
+section.userslist{
+    width: calc(100% - 40px);
+}
+
+.form-control{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.form-control label{
+    font-size: 14px;
+    color: var(--color-secondary);
+    margin-bottom: 5px;
+}
+
+.card .form-control svg{
+    color: var(--color-secondary);
+    transition: var(--transition);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+}
+
+.form-control input{
+    width: 90%;
+    height: auto;
+    padding: 7px 10px;
+    border-radius: 7px;
+    outline: none;
+    font-size: 20px;
+    color: var(--color-secondary);
+    background-color: var(--background);
+    border: 1px solid var(--background);
+    transition: var(--transition);
+}
+
+.form-control input::placeholder{
+    color: var(--color-icon-form);
+    font-size: 14px;
+}
+
+.form-control input:focus{
+    border: 1px solid var(--border-color);
+}
+
+.form-control input:focus + svg {
+    color: var(--border-color);
+}
+
+.form-control p{
+    width: 95%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-primary);
+}
+
+.form-control span{
+    margin-left: 10px;
+    font-size: 18px;
+    color: var(--border-color);
+}
+
+.form-control button{
+    width: 95%;
+}
+
+.dropdown input{
+    cursor: pointer;
+}
+
+.dropdown .dropdown-options{
+    height: 0;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 10;
+    background-color: var(--background-container-dark);
+    border-radius: 7px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.dropdown-options li{
+    padding: 10px 30px;
+    cursor: pointer;
+    color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+.dropdown-options li:hover{
+    background-color: var(--border-color);
 }
 
 .btn{
@@ -149,4 +262,76 @@ a{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.colorTypeUser{
+    color: var(--border-color);
+}
+
+.colorStatusActive{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--background-complete);
+}
+
+.colorStatusInactive{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color:  var(--background-danger);
+}
+
+/* Search control */
+
+.search-control{
+    width: 30%;
+    min-width: 450px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.search-control label{
+    font-size: 14px;
+    color: var(--color-secondary);
+    margin-bottom: 5px;
+}
+
+.search-control svg{
+    color: var(--color-secondary);
+    transition: var(--transition);
+    position: absolute;
+    top: 50%;
+    right: 40px;
+}
+
+.search-control input{
+    width: 90%;
+    height: auto;
+    padding: 7px 10px;
+    border-radius: 7px;
+    outline: none;
+    font-size: 20px;
+    color: var(--color-secondary);
+    background-color: var(--background);
+    border: 1px solid var(--background);
+    transition: var(--transition);
+}
+
+.search-control input::placeholder{
+    color: var(--color-icon-form);
+    font-size: 14px;
+}
+
+.search-control input:focus{
+    border: 1px solid var(--border-color);
+}
+
+.search-control input:focus + svg {
+    color: var(--border-color);
 }

@@ -5,6 +5,9 @@
     --color-primary: #fff;
     --color-secondary: #dadada;
     --color-icon-form: #565656;
+    --background-warning: #ffff58;
+    --background-danger: #a32727;
+    --background-complete: #158515;
     --border-color: #3373ef;
     --transition: all 0.3s ease;
     --color-hover-table: #2d2d2d;
@@ -49,75 +52,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-}
-
-.form-control{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-}
-
-.form-control label{
-    font-size: 14px;
-    color: var(--color-secondary);
-    margin-bottom: 5px;
-}
-
-.card .form-control svg{
-    color: var(--color-secondary);
-    transition: var(--transition);
-    position: absolute;
-    top: 50%;
-    right: 20px;
-}
-
-.form-control input{
-    width: 90%;
-    height: auto;
-    padding: 7px 10px;
-    border-radius: 7px;
-    outline: none;
-    font-size: 20px;
-    color: var(--color-secondary);
-    background-color: var(--background);
-    border: 1px solid var(--background);
-    transition: var(--transition);
-}
-
-.form-control input::placeholder{
-    color: var(--color-icon-form);
-    font-size: 14px;
-}
-
-.form-control input:focus{
-    border: 1px solid var(--border-color);
-}
-
-.form-control input:focus + svg {
-    color: var(--border-color);
-}
-
-.form-control p{
-    width: 95%;
-    height: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-size: 14px;
-    color: var(--color-primary);
-}
-
-.form-control span{
-    margin-left: 10px;
-    font-size: 18px;
-    color: var(--border-color);
-}
-
-.form-control button{
-    width: 95%;
 }
 
 .panel{
@@ -220,7 +154,7 @@
 
 .module-card.active{
     height: auto;
-    padding: 20px;
+    padding: 40px;
 }
 
 .module-card .form-control svg{
@@ -252,7 +186,7 @@
 }
 
 .styled-table thead tr {
-    background-color: var(--color-icon-form);
+    background-color: var(--background);
     color: #ffffff;
     text-align: left;
 }
@@ -263,11 +197,45 @@
     text-align: center;
 }
 
+.styled-table thead th {
+    color: var(--color-secondary);
+    background-color: var(--background-container);
+}
+
 .styled-table tbody tr {
     color: var(--color-secondary);
     background-color: var(--background);
 }
 
+.styled-table tbody tr:nth-child(even){
+    background-color: var(--background-container);
+}
+
 .styled-table tbody tr:hover{
     background-color: var(--color-hover-table);
+}
+
+.styled-table tbody tr td.table-options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.table-options a{
+    transition: var(--transition);
+}
+
+.table-options a:nth-child(2):hover{
+    color: var(--background-danger);
+}
+
+.table-options a:nth-child(1):hover{
+    color: var(--background-warning);
+}
+
+td.statusActive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

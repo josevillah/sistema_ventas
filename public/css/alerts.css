@@ -84,6 +84,7 @@ svg.danger.hide{
     left: 0;
     background-color: var(--alert-background-container);
     transition: var(--time-transition);
+    z-index: 50;
 }
 
 .modal-container.hide{

@@ -16,7 +16,7 @@
         <section class="module-card infoAccount active mt-20 w-500">
             <form class="infoAccount" action="" method="POST">
                 <div class="form-control">
-                    <p>Tipo de usuario: <span>Desarrollador</span></p>
+                    <p>Tipo de usuario: <span><%= type.name %></span></p>
                 </div>
                 <input type="hidden" name="firstUsername" value="<%= user.username %>">
                 <div class="form-control mt-10">
@@ -42,7 +42,7 @@
         <section class="module-card changePassword mt-20 w-500">
             <form class="changePassword" action="" method="POST">
                 <div class="form-control">
-                    <p>Tipo de usuario: <span>Desarrollador</span></p>
+                    <p>Tipo de usuario: <span><%= type.name %></span></p>
                 </div>
                 <input type="hidden" name="user" value="<%= user.username %>">
                 <div class="form-control mt-10">
