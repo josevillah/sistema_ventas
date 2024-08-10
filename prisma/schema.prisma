@@ -30,3 +30,12 @@ model TypeUsers {
   name  String
   users Users[]
 }
+
+model Backstore {
+  id         String   @id @default(uuid())
+  name       String
+  address    String
+  phone      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

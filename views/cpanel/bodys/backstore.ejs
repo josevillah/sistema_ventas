@@ -1,0 +1,91 @@
+<%- include('../headers/header_backstore.ejs') %>
+
+<section class="main">
+
+    <%- include('../components/panel.ejs') %>
+
+    <article class="container">
+        <section class="module-title">
+            <svg width="40"  height="40"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="3.5"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+            <h1>Bodega</h1>
+        </section>
+        <section class="module-actions mt-20">
+            <a href="" class="btn btn-primary active backstorelist">Lista de Bodegas</a>
+            <a href="" class="btn btn-primary backstoreNew">Nueva Bodega</a>
+        </section>
+        <section class="module-card backstorelist active mt-20">
+            <form class="searchUsers" action="" method="GET">
+                <div class="w-100">
+                    <div class="search-control">
+                        <label for="search">Buscar</label>
+                        <input type="text" name="search" id="search" placeholder="Buscar usuario">
+                        <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+                    </div>
+                </div>
+            </form>
+            <div class="table-container mt-20">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Fecha de creación</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(backs.length > 0){ 
+                            backs.forEach(back =>{  %>
+                                <tr data-id="<%= back.id %>">
+                                    <td><%= back.name %></td>
+                                    <td><%= back.address %></td>
+                                    <td><%= back.phone %></td>
+                                    <td><%= back.created_at %></td>
+                                    <td class="table-options">
+                                        <a class="editBackstore" href="">
+                                            <svg width="25"  height="25"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+                                        </a>
+                                        <a class="deleteBackstore" href="">
+                                            <svg width="25"  height="25"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% }else{ %>
+                            <tr>
+                                <td colspan="5">No se encontraron resultados</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="module-card backstoreNew mt-20 w-500">
+            <form class="backstoreNew" action="">
+                <div class="form-control">
+                    <label for="backstore">Nombre de bodega:</label>
+                    <input id="backstore" type="text" name="backstore" placeholder="Ingresa el nombre de la bodega">
+                    <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                </div>
+                <div class="form-control mt-10">
+                    <label for="direction">Dirección:</label>
+                    <input id="direction" type="text" name="direction" placeholder="Ingresa la dirección">
+                    <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                </div>
+                <div class="form-control mt-10">
+                    <label for="phone">Teléfono:</label>
+                    <input class="phone" id="phone" type="number" name="phone" placeholder="Ingresa el numero telefónico">
+                    <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z" /><path d="M11 4h2" /><path d="M12 17v.01" /></svg>
+                </div>
+                <div class="form-control mt-20">
+                    <button type="submit" class="btn btn-dark">Generar bodega</button>
+                </div>
+            </form>
+        </section>
+    </article>
+
+</article>
+
+<%- include('../components/alerts') %>
+<%- include('../footers/footer_backstore.ejs') %>

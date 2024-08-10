@@ -196,4 +196,61 @@ export class UserService {
             return updatedUser;
         }
     }
+
+    // Funcion para eliminar un usuario
+    async deleteUser( data: {id: string} ): Promise<Users> {
+        const result = await this.prisma.users.delete({
+            where:{
+                id: data.id
+            }
+        })
+        return result;
+    }
+    
+    // Funcion para eliminar un usuario
+    async searchUsers( data: {search: string} ): Promise<Users[]> {
+        const result = await this.prisma.users.findMany({
+            where:{
+                OR: [
+                    {
+                        username: {
+                            contains: data.search
+                        }
+                    },
+                    {
+                        full_name: {
+                            contains: data.search
+                        }
+                    }
+                ]
+            }
+        })
+        return result;
+    }
+
+    // Funcion para obtener un usuario por id
+    async getUserForId( data: {id: string} ): Promise<Users> {
+        const result = await this.prisma.users.findUnique({
+            where:{
+                id: data.id
+            }
+        });
+        return result;
+    }
+    
+    // Funcion para obtener un usuario por id
+    async editUserForId( data: {idUser:string, type_id: number, btnSwitch: boolean} ): Promise<Users> {
+        const result = await this.prisma.users.update({
+            where:{
+                id: data.idUser
+            },
+            data:{
+                type_id: data.type_id,
+                status: data.btnSwitch
+            }
+        });
+        return result;
+    }
+
+
 }

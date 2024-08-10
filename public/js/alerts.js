@@ -125,3 +125,19 @@ export class Modal {
         this.modal.removeEventListener('click', this.handleModalClick.bind(this));
     }
 }
+
+export class FormModal {
+    constructor() {
+        this.modalContainer = document.querySelector('.modal-form-container');
+        this.body = document.querySelector('.modal-form');
+        this.resolvePromise == null;
+    }
+
+    showFormModal() {
+        this.modalContainer.classList.remove('hide');
+    }
+    
+    hideFormModal() {
+        this.modalContainer.classList.add('hide');
+    }
+}
